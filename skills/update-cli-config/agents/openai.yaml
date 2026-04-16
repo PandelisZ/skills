@@ -1,0 +1,6 @@
+interface:
+  display_name: "Update CLI Config"
+  short_description: "View and modify Cursor CLI configuration settings in ~/.cursor/cli-config.json. Use when the user wants to change CLI settings, configure permissions, switch approval mode, enable vim mode, toggle display options, configure sandbox, or manage any CLI preferences"
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Update my Cursor CLI configuration settings."

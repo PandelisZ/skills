@@ -1,0 +1,6 @@
+interface:
+  display_name: "Canvas"
+  short_description: "A Canvas is a live React app rendered beside the chat. Use when producing standalone analytical artifacts like quantitative analyses, charts, tables, and interactive explorations."
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Create a canvas to visualize this data as a standalone analytical artifact."

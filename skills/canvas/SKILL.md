@@ -1,7 +1,7 @@
 ---
 name: canvas
 description: >-
-  A Cursor Canvas is a live React app rendered beside the chat. You MUST use a
+  A Canvas is a live React app rendered beside the chat. You MUST use a
   canvas when the agent produces a standalone analytical artifact — quantitative
   analyses, billing investigations, security audits, architecture reviews,
   data-heavy content, timelines, charts, tables, interactive explorations,
@@ -49,15 +49,14 @@ The trigger is **user intent**, not response shape. Ask: would the user benefit 
 - Exactly one `.canvas.tsx` file per canvas. Never create helper files, style files, or supporting modules.
 - Import **only** from `cursor/canvas`. No relative imports, no npm packages, no Node built-ins.
 - Default-export the top-level component.
-- Embed all data inline. **No `fetch()`, no network calls.**
 
-**Component discovery:** prefer built-in `cursor/canvas` components over hand-rolled markup. The full public surface (components, hooks, prop types, tokens) is declared in `~/.cursor/skills-cursor/canvas/sdk/index.d.ts` and its sibling `.d.ts` files — read them when you need exact exports, prop shapes, or hook signatures rather than guessing. Referencing an export that does not exist is the most common runtime error.
+**Component discovery:** prefer built-in `cursor/canvas` components over hand-rolled markup. The full public surface (components, hooks, prop types, tokens) is declared in `~/.codex/skills/canvas/sdk/index.d.ts` and its sibling `.d.ts` files — read them when you need exact exports, prop shapes, or hook signatures rather than guessing. Referencing an export that does not exist is the most common runtime error.
 
 Apply the Canvas generation policy below as you write, and complete its pre-delivery self-check (section 6) before returning the canvas.
 
 ## Design guidance
 
-Be creative. The SDK gives you expressive building blocks — use them in whatever combination best serves the content. But avoid slop: no gradients, no emojis, no box-shadows, no rainbow coloring. Cursor canvases are flat, minimal, and purposeful.
+Be creative. The SDK gives you expressive building blocks — use them in whatever combination best serves the content. But avoid slop: no gradients, no emojis, no box-shadows, no rainbow coloring. Canvases are flat, minimal, and purposeful.
 
 ### Visual hierarchy
 
@@ -143,3 +142,4 @@ Stats in a Grid, Table directly under H2, text sections without cards.
   <Card><CardHeader>Changes</CardHeader><CardBody><Text>Latency increased.</Text></CardBody></Card>
 </Stack>
 ```
+
