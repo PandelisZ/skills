@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Hooks"
+  short_description: "Create Cursor hooks. Use when you want to create a hook, write hooks.json, add hook scripts, or automate behavior around agent events"
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Create a Cursor hook that runs custom logic before or after agent events."

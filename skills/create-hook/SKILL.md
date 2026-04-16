@@ -1,12 +1,12 @@
 ---
 name: create-hook
 description: >-
-  Create Cursor hooks. Use when you want to create a hook, write hooks.json, add
+  Create agent hooks. Use when you want to create a hook, write hooks.json, add
   hook scripts, or automate behavior around agent events.
 ---
-# Creating Cursor Hooks
+# Creating Agent Hooks
 
-Create hooks when you want Cursor to run custom logic before or after agent events. Hooks are scripts or prompt-based checks that exchange JSON over stdin/stdout and can observe, block, modify, or follow up on behavior.
+Create hooks when you want the agent to run custom logic before or after agent events. Hooks are scripts or prompt-based checks that exchange JSON over stdin/stdout and can observe, block, modify, or follow up on behavior.
 
 When the user asks for a hook, don't stop at describing the format. Gather the missing requirements, then create or update the hook files directly.
 
@@ -212,7 +212,7 @@ When the user wants to rewrite a tool call, prefer `preToolUse`. When they want 
 6. Make the script executable
 7. Verify any helper executables the script uses are installed and on `$PATH`
 8. Trigger the relevant action to test the hook
-9. Verify behavior in Cursor's **Hooks** settings tab or the **Hooks** output channel
+9. Verify behavior in the **hooks settings** or the **Hooks** output channel
 
 If you are editing an existing hooks setup, preserve unrelated hooks and only change the minimum necessary entries.
 

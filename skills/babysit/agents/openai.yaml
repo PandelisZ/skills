@@ -1,0 +1,6 @@
+interface:
+  display_name: "Babysit PR"
+  short_description: "Keep a PR merge-ready by triaging comments, resolving clear conflicts, and fixing CI in a loop"
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Keep this PR merge-ready by checking PR status, comments, and CI. Resolve any issues until the PR is ready to merge."

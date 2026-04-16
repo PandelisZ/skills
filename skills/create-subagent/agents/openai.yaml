@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Subagents"
+  short_description: "Create custom subagents for specialized AI tasks. Use when you want to create a new type of subagent, set up task-specific agents, configure code reviewers, debuggers, or domain-specific assistants with custom prompts"
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Create a custom subagent for a specialized AI task."
