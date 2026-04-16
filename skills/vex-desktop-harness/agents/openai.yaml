@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vex Desktop Harness"
+  short_description: "Launch and debug Vex desktop"
+  default_prompt: "Use $vex-desktop-harness to launch, smoke, inspect artifacts from, diagnose, or stop the Vex desktop Storybook, Vite, or Tauri dev surfaces."

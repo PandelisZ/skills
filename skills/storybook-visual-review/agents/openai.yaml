@@ -1,0 +1,4 @@
+interface:
+  display_name: "Storybook Visual Review"
+  short_description: "Review Storybook stories visually"
+  default_prompt: "Use $storybook-visual-review to open a Storybook story, inspect it, and capture screenshots for design review."
