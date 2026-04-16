@@ -45,6 +45,7 @@
     "storybook-visual-review",
     "kamal-deployment",
     "vex-desktop-harness",
-    "codex-primary-runtime"
+    "codex-primary-runtime",
+    "codex-continue-iterating"
   ]
 }
