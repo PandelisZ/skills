@@ -1,0 +1,50 @@
+{
+  "name": "@pz/skills",
+  "version": "1.0.0",
+  "description": "Agent skills collection for npx skills",
+  "files": [
+    "skills/",
+    "setup.sh",
+    "README.md"
+  ],
+  "scripts": {
+    "setup": "./setup.sh",
+    "list": "./setup.sh --list",
+    "check": "./setup.sh --check",
+    "test": "echo 'No tests specified' && exit 0"
+  },
+  "keywords": [
+    "skills",
+    "cursor",
+    "agent",
+    "ai",
+    "automation",
+    "npx"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "skills": [
+    "shell",
+    "playwright",
+    "playwright-interactive",
+    "screenshot",
+    "canvas",
+    "create-skill",
+    "create-subagent",
+    "create-rule",
+    "create-hook",
+    "babysit",
+    "statusline",
+    "update-cli-config",
+    "update-cursor-settings",
+    "migrate-to-skills",
+    "storybook-visual-review",
+    "kamal-deployment",
+    "vex-desktop-harness",
+    "codex-primary-runtime"
+  ]
+}
