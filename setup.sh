@@ -235,10 +235,6 @@ check_directory_structure() {
     return 0
 }
 
-# List all available skills
-list_skills() {
-    print_info "Available skills:"
-
 # Extract description from YAML frontmatter in SKILL.md
 # Handles single-line and multi-line (>-, |, >) YAML formats
 extract_description() {
@@ -269,7 +265,7 @@ extract_description() {
                 # Single line description (remove quotes if present)
                 description="${after_colon#\"}"
                 description="${description%\"}"
-                description="${description#'}"
+                description="${after_colon#'}"
                 description="${description%'}"
                 break
             fi
@@ -346,6 +342,10 @@ list_skills() {
         fi
     done
 }
+
+# Show installation instructions
+show_install_instructions() {
+    cat << 'EOF'
 
 ╔════════════════════════════════════════════════════════════════╗
 ║              SKILL INSTALLATION OPTIONS                        ║
