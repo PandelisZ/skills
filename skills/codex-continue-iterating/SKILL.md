@@ -19,6 +19,7 @@ When a Codex rollout ends with a list of recommended next steps, **do not let th
 
 Activate this skill when Codex outputs contain any of these patterns at the end:
 
+**Direct next steps:**
 - "Next steps:"
 - "Recommended:"
 - "TODO:"
@@ -28,7 +29,16 @@ Activate this skill when Codex outputs contain any of these patterns at the end:
 - "Remaining work:"
 - "Still to do:"
 - "Future improvements:"
-- Numbered or bulleted lists of next actions after a summary
+
+**Codex continuation offers (CRITICAL - these often go unactioned):**
+- "If you want, I can keep driving..."
+- "If you want, the next..."
+- "If you want, the next step can be..."
+- "What is still in flight:"
+- "We could continue..."
+- "The next phase would be..."
+
+**Any numbered or bulleted lists of next actions after a summary or progress report**
 
 ## Workflow
 
@@ -83,7 +93,37 @@ Before completing, explicitly address pending items with the user:
 > 1. **API documentation** - Should I proceed with updating the docs?
 > 2. **Query optimization** - This is lower priority; shall we defer or include?"
 
-## Prioritization Logic
+## Special Pattern: Codex Continuation Offers
+
+A **critical activation** is when Codex offers to continue work with phrases like:
+
+- "If you want, I can..."
+- "If you want, the next..."
+- "We could continue..."
+
+**These are not suggestions for YOU to do - they're offers from Codex to keep going.**
+
+### How to Handle Continuation Offers
+
+**Your response must be:**
+> "Yes, let's continue. [Restate what they'll do]..."
+
+Then **immediately proceed** with the work. Do not:
+- Ask "should I continue?" (Codex already asked)
+- End the session (defeats the purpose)
+- Wait for explicit confirmation (the offer IS the confirmation prompt)
+
+### The "Still in Flight" Pattern
+
+When Codex lists "what is still in flight" or pending items, this is a **status report of incomplete work**. Treat it as a work queue:
+
+1. Acknowledge the status
+2. Pick the first item
+3. Complete it
+4. Move to the next
+5. Report completion of all items
+
+**Critical distinction:** "In flight" items are **blocking continuation** of the main task. They must be resolved.
 
 When deciding what to tackle first:
 
@@ -120,6 +160,8 @@ When deciding what to tackle first:
 
 ## Example Session Flow
 
+### Example 1: Standard Next Steps
+
 **Codex says:**
 > "I've implemented the basic feature. Next steps:
 > 1. Add error handling for network failures
@@ -136,3 +178,57 @@ When deciding what to tackle first:
 > - ✅ Updated README with new usage examples
 >
 > The feature is now complete and ready for use."
+
+### Example 2: Codex "Still in Flight" Pattern
+
+**Codex says:**
+> "What is still in flight:
+> - cmd+shift+[ / ] to move tabs left/right
+> - cmd+w to close the current tab or extracted pane
+> - cmd+option+h/j/k/l to move the pane itself instead of just focus it"
+
+**❌ Without this skill (thread ends):**
+> User: "OK great" 
+> [Nothing happens - features remain unimplemented]
+
+**✅ With this skill:**
+> "I'll implement those keyboard shortcuts now. Starting with tab movement..."
+> [Implements cmd+shift+[ / ] for tab movement]
+> [Implements cmd+w for closing tabs/panes]
+> [Implements cmd+option+hjkl for pane movement]
+>
+> "✅ All keyboard shortcuts implemented and tested. What's next?"
+
+### Example 3: Codex Continuation Offer
+
+**Codex says:**
+> "If you want, I can keep driving the kernel build in the next turn and continue straight into initramfs assembly and QEMU boot once it finishes."
+
+**❌ Without this skill (thread ends):**
+> User: "Sounds good!"
+> [User has to manually restart the next phase]
+
+**✅ With this skill:**
+> "Yes, let's continue. Driving the kernel build now..."
+> [Continues directly into the work without waiting for next turn]
+> [Seamlessly transitions to initramfs assembly]
+> [Proceeds to QEMU boot testing]
+>
+> "Kernel build complete, initramfs assembled, and successfully booted in QEMU. What's the next milestone?"
+
+### Example 4: Next Ergonomic Pass
+
+**Codex says:**
+> "If you want, the next ergonomic pass could be:
+> - drag the header to reposition within the split
+> - drag split dividers to resize
+> - click the new button to pop that pane back into its own tab
+>
+> If you want, the next step can be the full multi-window version of that same action."
+
+**✅ With this skill:**
+> "I'll implement the full ergonomic pass now, starting with drag-to-reposition..."
+> [Implements all listed interactions]
+> [Proceeds to multi-window version without prompting]
+>
+> "Full ergonomic interaction set complete, including multi-window support. Ready for the next phase?"
