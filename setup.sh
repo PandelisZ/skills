@@ -238,6 +238,87 @@ check_directory_structure() {
 # List all available skills
 list_skills() {
     print_info "Available skills:"
+
+# Extract description from YAML frontmatter in SKILL.md
+# Handles single-line and multi-line (>-, |, >) YAML formats
+extract_description() {
+    local file="$1"
+    local in_description=0
+    local description=""
+    local indent=""
+    
+    while IFS= read -r line; do
+        # Check for end of YAML frontmatter
+        if [[ "$line" == "---" && -n "$description" ]]; then
+            break
+        fi
+        
+        # Check if we are starting a description field
+        if [[ $in_description -eq 0 && "$line" =~ ^description: ]]; then
+            # Single line description: description: "text" or description: text
+            local after_colon="${line#description:}"
+            after_colon="${after_colon# }"  # remove leading space
+            
+            # Check if it is a multi-line indicator (>-, >, |-, |, or empty)
+            if [[ "$after_colon" =~ ^(>[-]?|\|[-]?|>)?$ ]]; then
+                # Multi-line: start collecting indented lines
+                in_description=1
+                indent=""
+                continue
+            elif [[ -n "$after_colon" ]]; then
+                # Single line description (remove quotes if present)
+                description="${after_colon#\"}"
+                description="${description%\"}"
+                description="${description#'}"
+                description="${description%'}"
+                break
+            fi
+        fi
+        
+        # Collecting multi-line description
+        if [[ $in_description -eq 1 ]]; then
+            # Empty line - add to description
+            if [[ -z "$line" ]]; then
+                description="${description} "
+                continue
+            fi
+            
+            # Determine base indent from first non-empty line
+            if [[ -z "$indent" && "$line" =~ ^[[:space:]] ]]; then
+                indent="${line%%[^[:space:]]*}"
+            fi
+            
+            # Check if line is still indented (part of description)
+            if [[ "$line" =~ ^[[:space:]] || -z "$line" ]]; then
+                # Remove base indent
+                local content="$line"
+                if [[ -n "$indent" && "$content" == "$indent"* ]]; then
+                    content="${content#$indent}"
+                elif [[ "$content" =~ ^[[:space:]] ]]; then
+                    # Remove leading whitespace
+                    content="${content#${content%%[^[:space:]]*}}"
+                fi
+                
+                if [[ -n "$description" ]]; then
+                    description="${description} ${content}"
+                else
+                    description="${content}"
+                fi
+            else
+                # Line not indented - end of description
+                break
+            fi
+        fi
+    done < "$file"
+    
+    # Trim trailing whitespace
+    description="${description% }"
+    echo "$description"
+}
+
+# List all available skills
+list_skills() {
+    print_info "Available skills:"
     echo ""
 
     if [[ ! -d "${SKILLS_DIR}" ]]; then
@@ -255,11 +336,7 @@ list_skills() {
 
         if [[ -f "${skill_md}" ]]; then
             # Extract description from YAML frontmatter
-            description=$(grep -A 1 '^description:' "${skill_md}" | tail -1 | sed "s/^  //; s/[>']*$//; s/^ *['\"]//; s/['\"]$//")
-            # If description is on same line
-            if [[ -z "${description}" ]]; then
-                description=$(grep '^description:' "${skill_md}" | sed "s/description: *//; s/^['\"]//; s/['\"]$//")
-            fi
+            description=$(extract_description "${skill_md}")
         fi
 
         if [[ -n "${description}" ]]; then
@@ -269,10 +346,6 @@ list_skills() {
         fi
     done
 }
-
-# Show installation instructions
-show_install_instructions() {
-    cat << 'EOF'
 
 ╔════════════════════════════════════════════════════════════════╗
 ║              SKILL INSTALLATION OPTIONS                        ║
