@@ -1,0 +1,6 @@
+interface:
+  display_name: "Continue Iterating"
+  short_description: "Monitor and continue executing Codex rollout recommended next steps. Activates when Codex ends with recommendations like 'Next steps:' or 'TODO:' - ensures those recommendations are actually executed rather than letting the thread end with unactioned suggestions."
+  icon_small: ""
+  icon_large: ""
+  default_prompt: "Check if there are pending recommendations from the last Codex rollout. If there are next steps listed, parse them, prioritize them, and execute them now rather than ending the session with unactioned suggestions."
