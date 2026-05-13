@@ -14,7 +14,7 @@ This skill guides you through creating effective Agent Skills. Skills are markdo
 Before creating a skill, gather essential information from the user about:
 
 1. **Purpose and scope**: What specific task or workflow should this skill help with?
-2. **Target location**: Should this be a personal skill (~/.cursor/skills/ or ~/.codex/skills/) or project skill (.cursor/skills/)?
+2. **Target location**: Skills should be stored as project skills under `.agents/skills/`.
 3. **Trigger scenarios**: When should the agent automatically apply this skill?
 4. **Key domain knowledge**: What specialized information does the agent need that it wouldn't already know?
 5. **Output format preferences**: Are there specific templates, formats, or styles required?
@@ -30,7 +30,7 @@ If you need clarification, use the AskQuestion tool when available:
 
 ```
 Example AskQuestion usage:
-- "Where should this skill be stored?" with options like ["Personal (~/.cursor/skills/ or ~/.codex/skills/)", "Project (.cursor/skills/)"]
+- "Where should this skill be stored?" with the default answer `.agents/skills/`
 - "Should this skill include executable scripts?" with options like ["Yes", "No"]
 ```
 
@@ -58,10 +58,9 @@ skill-name/
 
 | Type | Path | Scope |
 |------|------|-------|
-| Personal | ~/.cursor/skills/ or ~/.codex/skills/skill-name/ | Available across all your projects |
-| Project | .cursor/skills/skill-name/ | Shared with anyone using the repository |
+| Project | .agents/skills/skill-name/ | Shared with anyone using the repository |
 
-**IMPORTANT**: Never create skills in system-managed skill directories (e.g., `~/.cursor/skills-cursor/`). These directories are reserved for internal built-in skills and are managed automatically by the system.
+**IMPORTANT**: Never create skills in generated, editor-managed, or system-managed skill directories. Project-authored skills belong under `.agents/skills/`.
 
 ### SKILL.md Structure
 
